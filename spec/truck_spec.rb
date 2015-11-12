@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe Truck do
   let (:truck) {Truck.new}
+  let (:box) {Box.new("Meder", "Tok")}
   describe '.new' do
     it 'creates new truck' do
       expect(truck.class).to eq(Truck)
@@ -15,21 +16,19 @@ describe Truck do
     end
   end
 
-  describe '#add_box' do
+  describe '#add' do
     it 'adds new box to the truck' do
-      truck.add_box("Ezra", "Shim")
-      expect(truck.boxes.size).to eq(1)
+      truck.add(box)
+      expect(truck.space.size).to eq(1)
     end
   end
 
-  describe '#remove_box' do
+  describe '#remove' do
     it "removes an existing box in the truck" do
-      truck.add_box("Ezra", "Shim")
-      truck.remove_box("Ezra", "Shim")
-      expect(truck.boxes.size).to eq(0)
-
+      truck.add(box)
+      truck.remove(box)
+      expect(truck.space.size).to eq(0)
     end
-
   end
 
 end
